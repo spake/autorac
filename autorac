@@ -21,7 +21,7 @@ SCHEMES = ['in.txt', '.in', 'stdin']
 
 TIMEOUT = 5
 
-COOKIE_PATH = os.path.expanduser('~/.orac_cookie')
+COOKIE_PATH = os.path.expanduser('~/.autorac_cookie')
 
 def language_file_extension(lang):
     # at this point in time, all extension are the same as the language itself
@@ -111,19 +111,24 @@ def alarm_handler(signum, frame):
     raise Alarm
 
 def usage():
-    print 'orac automator'
+    print 'autorac, the orac automator'
     print 'by george caley, https://github.com/spake'
     print
     print 'usage:'
     print '%s <command> <command args> <flags>' % sys.argv[0]
     print
     print 'commands:'
-    print 'test <name>: runs unit tests using cases named <name>in.n and <name>out.n, n >= 0'
-    print 'submit <name> <id>: submits a solution to orac'
+    print 'test <name>: runs unit tests using cases named'
+    print '             <name>in.n and <name>out.n, n >= 0'
+    print 'submit <name> <problem_id>: submits a solution to orac'
     print
     print 'flags:'
-    print '-l: specifies a language to use for submission and testing. accepted languages are %s' % ', '.join(LANGUAGES)
-    print '-t: specifies a testing scheme to use for testing. accepted schemes are %s' % ', '.join(SCHEMES)
+    print '-l: specifies a language to use for submission and testing.'
+    print '    accepted languages are %s' % ', '.join(LANGUAGES)
+    print '    default language is %s if <name>.c, <name>.py, etc. isn\'t found' % DEFAULT_LANGUAGE
+    print '-t: specifies a testing scheme to use for testing.'
+    print '    accepted schemes are %s' % ', '.join(SCHEMES)
+    print '    default scheme is stdin if <name>in.txt, <name>.in, etc. isn\'t found'
     exit(0)
 
 def usage_assert(condition):
